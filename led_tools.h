@@ -1,3 +1,5 @@
+#include <Ticker.h>
+
 const int PinLED[] = {D1, D2, D5, D6 };
 const byte anzLED = 4;
 byte gv_act_led;
@@ -7,8 +9,6 @@ byte gv_led_prog;
 boolean gv_fade_active;
 int gv_act_led_pwm;
 Ticker fade_tick;
-
-
 
 byte inc_LED( byte iv_LED) {
   byte lv_led = iv_LED;
@@ -60,10 +60,6 @@ void init_led( ) {
 void step_LED( ) {
   set_LED(gv_act_led, 0);
   gv_act_led = inc_LED(gv_act_led);
-  //  gv_act_led++;
-  //  if (gv_act_led >= anzLED) {
-  //    gv_act_led = 0;
-  //  }
   set_LED(gv_act_led, 1);
 }
 
