@@ -40,7 +40,7 @@ void check_sched(){
 
 
   if (sched_do[2] == true) {
-    check_led();
+    sched_intrvl[2] = check_led(sched_intrvl[2]);
     sched_do[2] = false;
   }
   

@@ -64,25 +64,31 @@ void step_LED( ) {
 }
 
 
-void fade_next_LED( ) {
+int fade_next_LED(int iv_intrvl) {
 
   if (gv_fade_active) {
-    return;
+    return iv_intrvl;
   }
 
   gv_fade_active = true;
-  gv_next_led = inc_LED(gv_act_led);
+  int rnd = random(1,4); 
+  gv_next_led = gv_act_led;
+  for (int i=0; i<rnd;i++){
+    gv_next_led = inc_LED(gv_next_led);
+  }
   gv_act_led_pwm = 1024;
   fade_tick.attach_ms(100, do_fadetick);
+  return random(2, 15);
 }
 
-void check_led() {
+int check_led(int iv_intrvl) {
   switch  (gv_led_prog) {
     case 1:
       step_LED( );
+      return iv_intrvl;
       break;
     case 2:
-      fade_next_LED( );
+      return fade_next_LED( iv_intrvl );
       break;
   }
 }
